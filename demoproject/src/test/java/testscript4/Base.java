@@ -19,7 +19,7 @@ public class Base {
 
 
 @BeforeMethod(alwaysRun=true)
-@Parameters("browser")
+@Parameters("browser") 
 public void browserInitialization(String browser) throws Exception
 {
 	if(browser.equalsIgnoreCase("chrome"))

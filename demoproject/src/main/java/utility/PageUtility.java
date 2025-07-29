@@ -1,8 +1,5 @@
 package utility;
-
-import java.time.Duration;
-
-import org.openqa.selenium.By;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -48,12 +45,6 @@ public WebDriverWait wait;
 		action.contextClick(target).build().perform();
 	}
 	
-	//mouseHover
-	public void mouseHover(WebElement target)
-	{
-		Actions action=new Actions(driver);
-		action.contextClick(target).build().perform();
-	}
 	//mouseclick
 	public void mouseClick(WebElement target)
 	{
@@ -120,6 +111,38 @@ public WebDriverWait wait;
     // Scroll up by pixels
     public void scrollUpByPixels(int pixels) {
         js.executeScript("window.scrollBy(0,-" + pixels + ");");
+    }
+
+    // ----------- Alert Handling Methods -------------
+
+    // Wait for alert to be present
+    public void waitForAlert() {
+        wait.until(ExpectedConditions.alertIsPresent());
+    }
+
+    // Accept alert (click OK)
+    public void acceptAlert() {
+        Alert alert = driver.switchTo().alert();
+        alert.accept();
+    }
+
+    // Dismiss alert (click Cancel)
+    public void dismissAlert() {
+        Alert alert = driver.switchTo().alert();
+        alert.dismiss();
+    }
+
+    // Get alert message text
+    public String getAlertText() {
+        Alert alert = driver.switchTo().alert();
+        return alert.getText();
+    }
+
+    // Send text to alert (prompt alert)
+    public void sendTextToAlert(String inputText) {
+        Alert alert = driver.switchTo().alert();
+        alert.sendKeys(inputText);
+        alert.accept();
     }
 
 }
